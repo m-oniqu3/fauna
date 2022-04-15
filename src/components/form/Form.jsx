@@ -14,7 +14,9 @@ const Form = () => {
       <Container>
         <form>
           <Container>
-            <h2 className={styled.greeting}>Welcome back bloomer!</h2>
+            <h2 className={styled.greeting}>
+              {hasAccount ? "Welcome back bloomer!" : "Welcome bloomer!"}
+            </h2>
             <div className={styled["form-group"]}>
               <label htmlFor="email">Email</label>
               <input type="email" />
