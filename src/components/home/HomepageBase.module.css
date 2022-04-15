@@ -21,9 +21,6 @@
   .intro {
     padding-top: 12rem;
   }
-}
-
-@media (min-width: 1024px) {
   .btn {
     padding: 10px 25px;
   }

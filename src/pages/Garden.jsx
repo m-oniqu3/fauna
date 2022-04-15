@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "../components/garden/Garden.module.css";
 import Container from "../components/ui/Container";
 import { plantData } from "../components/garden/plantData";
 import PlantDetails from "../components/garden/PlantDetails";
@@ -10,8 +11,8 @@ const Garden = () => {
   ));
 
   return (
-    <section>
-      <Container>
+    <section className={styled["product-container"]}>
+      <Container className={styled["product-wrapper"]}>
         <article>
           <h1 className="heading">
             indoor <span>plants</span>
@@ -22,7 +23,7 @@ const Garden = () => {
           </p>
         </article>
 
-        <section>{shop}</section>
+        <section className={styled.shop}>{shop}</section>
       </Container>
     </section>
   );

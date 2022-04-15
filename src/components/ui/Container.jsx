@@ -6,7 +6,11 @@ const Container = (props) => {
     margin: "0 auto",
   };
 
-  return <div style={styling}>{props.children}</div>;
+  return (
+    <div style={styling} className={`${props.className}`}>
+      {props.children}
+    </div>
+  );
 };
 
 export default Container;

@@ -40,3 +40,9 @@ a {
   border: none;
   border-radius: 163px;
 }
+
+@media (min-width: 768px) {
+  .login {
+    padding: 10px 25px;
+  }
+}

@@ -1,0 +1,16 @@
+.product-container {
+  margin-top: 5rem;
+}
+
+.shop {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 300px));
+  justify-content: space-evenly;
+}
+
+@media (min-width: 1024px) {
+  .product-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+}
