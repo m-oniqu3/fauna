@@ -10,7 +10,6 @@ const App = () => {
   return (
     <div>
       <Navbar />
-
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/garden" element={<Garden />} />

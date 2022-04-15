@@ -5,11 +5,26 @@
   height: 90vh;
 }
 
+.intro {
+  padding-top: 7rem;
+}
+
 .btn {
   padding: 7px 16px;
-
   background: #e9e8e4;
   color: #416a40;
   border: 1.3px solid #416a40;
   border-radius: 163px;
+}
+
+@media (min-width: 768px) {
+  .intro {
+    padding-top: 12rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .btn {
+    padding: 10px 25px;
+  }
 }

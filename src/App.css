@@ -18,7 +18,7 @@
   color: #b5b7aa;
   font-size: 3rem;
   font-weight: 700;
-  padding-top: 7rem;
+  width: 300px;
 }
 
 .heading span {
@@ -31,4 +31,21 @@
   margin: 1.5rem 0;
   line-height: 20px;
   width: 250px;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    width: 70%;
+    max-width: 450px;
+  }
+
+  .heading,
+  .heading span {
+    font-size: 5rem;
+  }
+
+  .content {
+    font-size: 1.3rem;
+    width: 350px;
+  }
 }

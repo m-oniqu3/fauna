@@ -11,9 +11,11 @@ const HomepageBase = (props) => {
       className={styled.base}
     >
       <Container>
-        <h1 className="heading">{props.heading}</h1>
-        <p className="content">{props.content}</p>
-        <button className={styled.btn}> {props.buttonText} </button>
+        <article className={styled.intro}>
+          <h1 className="heading">{props.heading}</h1>
+          <p className="content">{props.content}</p>
+          <button className={styled.btn}> {props.buttonText} </button>
+        </article>
       </Container>
     </section>
   );
