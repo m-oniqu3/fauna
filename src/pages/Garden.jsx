@@ -22,10 +22,7 @@ const Garden = () => {
           </p>
         </article>
 
-        <section>
-          <h3>Shop Indoor Plants</h3>
-          <div>{shop}</div>
-        </section>
+        <section>{shop}</section>
       </Container>
     </section>
   );

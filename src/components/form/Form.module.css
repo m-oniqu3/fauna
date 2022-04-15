@@ -1,0 +1,74 @@
+.background {
+  background-image: url("https://images.unsplash.com/photo-1483794344563-d27a8d18014e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  padding-top: 7rem;
+}
+
+form {
+  background: linear-gradient(
+      0deg,
+      rgba(25, 41, 24, 0.5),
+      rgba(65, 106, 64, 0.5)
+    ),
+    url("https://images.unsplash.com/photo-1586073305502-5c5cc4a594bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=379&q=80");
+  backdrop-filter: blur(100px);
+  color: white;
+  border-radius: 40px;
+  padding: 2rem 0;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.greeting {
+  font-family: "Georgia", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+}
+
+label {
+  display: block;
+  padding-bottom: 0.5rem;
+}
+
+input {
+  background: rgba(235, 235, 235, 0.2);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  width: 100%;
+}
+
+.form-group {
+  padding-bottom: 1rem;
+}
+
+.btnSubmit {
+  padding: 10px 40px;
+  color: white;
+  background: rgba(235, 235, 235, 0.4);
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+.btnSubmit:hover,
+.btnSubmit:focus {
+  background-color: rgba(245, 245, 245, 0.889);
+  color: #416a40;
+}
+
+.prompt {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+}

@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "./NavBar.module.css";
 import logo from "../../images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const loginHandler = () => {
+    navigate("/login");
+  };
   return (
     <nav className={styled.nav}>
       <figure className={styled.logo}>
@@ -20,7 +24,9 @@ const Navbar = () => {
         </li>
       </ul>
 
-      <button className={styled.login}>Login</button>
+      <button onClick={loginHandler} className={styled.login}>
+        Login
+      </button>
     </nav>
   );
 };

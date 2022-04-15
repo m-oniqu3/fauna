@@ -3,6 +3,7 @@
   margin: 3rem auto;
   border-radius: 40px;
   background: #e7e8e3;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
 
 .plant-img {
