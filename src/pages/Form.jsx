@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Container from "../ui/Container";
-import styled from "./Form.module.css";
+import Container from "../components/ui/Container";
+import styled from "../components/form/Form.module.css";
 
 const Form = () => {
   const [hasAccount, setHasAccount] = useState(true);

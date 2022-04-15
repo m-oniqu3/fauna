@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
   const loginHandler = () => {
-    navigate("/login");
+    navigate("/account");
   };
   return (
     <nav className={styled.nav}>
