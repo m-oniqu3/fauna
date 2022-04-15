@@ -1,0 +1,38 @@
+.base {
+  /* background-image: url(""); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 60%;
+  height: 90vh;
+}
+
+.heading,
+.heading span {
+  font-family: "Georgia", sans-serif;
+  text-transform: lowercase;
+  color: #b5b7aa;
+  font-size: 3rem;
+  font-weight: 700;
+  padding-top: 7rem;
+}
+
+.heading span {
+  color: #416a40;
+}
+
+.content {
+  color: #b5b7aa;
+  text-transform: lowercase;
+  margin: 1.5rem 0;
+  line-height: 20px;
+  width: 250px;
+}
+
+.btn {
+  padding: 7px 16px;
+
+  background: #e9e8e4;
+  color: #416a40;
+  border: 1.3px solid #416a40;
+  border-radius: 163px;
+}
