@@ -1,10 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Container from "../components/ui/Container";
 import styled from "../components/form/Form.module.css";
 import { createNewUser } from "../Firebase";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
+  const [loading, setLoading] = useState(false);
   const [hasAccount, setHasAccount] = useState(true);
+  const navigate = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -13,11 +16,17 @@ const Form = () => {
   };
 
   const createAccount = async () => {
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-    console.log(email, password);
+    let email = emailRef.current.value;
+    let password = passwordRef.current.value;
 
-    await createNewUser(email, password);
+    setLoading(true);
+    try {
+      await createNewUser(email, password);
+      navigate("/");
+    } catch (error) {
+      alert("Error" + error.message);
+    }
+    setLoading(false);
   };
 
   const loginHandler = () => {};
@@ -46,7 +55,12 @@ const Form = () => {
               <input type="password" ref={passwordRef} required />
             </div>
 
-            <button className={styled.btnSubmit} type="submit">
+            {/* disable the button while loading */}
+            <button
+              disabled={loading}
+              className={styled.btnSubmit}
+              type="submit"
+            >
               {hasAccount ? "Login" : "Create Account"}
             </button>
 
