@@ -15,10 +15,12 @@ const Navbar = () => {
   };
 
   const logoutHandler = async () => {
-    await signOut(auth).then(() => {
-      setIsLoggedIn(false);
-      navigate("/account");
-    });
+    await signOut(auth)
+      .then(() => {
+        setIsLoggedIn(false);
+        navigate("/account");
+      })
+      .catch((error) => alert("Error" + error));
   };
 
   return (

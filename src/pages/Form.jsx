@@ -1,8 +1,9 @@
 import React, { useContext, useRef, useState } from "react";
 import Container from "../components/ui/Container";
 import styled from "../components/form/Form.module.css";
-import { createNewUser } from "../Firebase";
+import { auth, createNewUser } from "../Firebase";
 import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Form = () => {
   const [loading, setLoading] = useState(false);
@@ -16,8 +17,8 @@ const Form = () => {
   };
 
   const createAccount = async () => {
-    let email = emailRef.current.value;
-    let password = passwordRef.current.value;
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
 
     setLoading(true);
     try {
@@ -29,7 +30,21 @@ const Form = () => {
     setLoading(false);
   };
 
-  const loginHandler = () => {};
+  const loginHandler = async () => {
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    setLoading(true);
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/");
+    } catch (error) {
+      alert("Error" + error);
+    }
+
+    setLoading(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

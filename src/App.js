@@ -9,10 +9,10 @@ import { AuthContext } from "./contexts/AuthContext";
 
 const App = () => {
   const { isLoggedIn } = useContext(AuthContext);
+
   return (
     <div>
       <Navbar />
-      {/* {isLoggedIn && currentUser && <p> {currentUser.email} </p>} */}
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/garden" element={<Garden />} />
