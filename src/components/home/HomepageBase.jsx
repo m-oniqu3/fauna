@@ -3,6 +3,8 @@ import Container from "../ui/Container";
 import styled from "./HomepageBase.module.css";
 
 const HomepageBase = (props) => {
+  const clickHandler = () => props.buttonFunction();
+
   return (
     <section
       style={{
@@ -14,7 +16,9 @@ const HomepageBase = (props) => {
         <article className={styled.intro}>
           <h1 className="heading">{props.heading}</h1>
           <p className="content">{props.content}</p>
-          <button className={styled.btn}> {props.buttonText} </button>
+          <button className={styled.btn} onClick={clickHandler}>
+            {props.buttonText}
+          </button>
         </article>
       </Container>
     </section>
