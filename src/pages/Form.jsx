@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "../components/ui/Container";
 import styled from "../components/form/Form.module.css";
 import { auth, createNewUser } from "../Firebase";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Form = () => {
+  const { currentUser, setCurrentUser, setIsLoggedIn } =
+    useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [hasAccount, setHasAccount] = useState(true);
   const [email, setEmail] = useState("");
@@ -18,13 +21,19 @@ const Form = () => {
 
   /**
    * create account with the user with their email and password
-   * navigate to the home page if the accunt was created successfully
+   * set isLoggedIn state to true and also store it in local storage
+   * navigate to the home page if the account was created successfully
    * show error if the process failed
    */
   const createAccount = async () => {
     setLoading(true);
     try {
-      await createNewUser(email, password);
+      await createNewUser(email, password).then((userCredential) =>
+        setCurrentUser(userCredential.user)
+      );
+      setIsLoggedIn(true);
+      localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("user", currentUser);
       navigate("/");
     } catch (error) {
       alert("Error" + error.message);
@@ -41,7 +50,12 @@ const Form = () => {
     setLoading(true);
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password).then(
+        (userCredential) => setCurrentUser(userCredential.user)
+      );
+      setIsLoggedIn(true);
+      localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("user", currentUser);
       navigate("/");
     } catch (error) {
       alert("Error" + error);

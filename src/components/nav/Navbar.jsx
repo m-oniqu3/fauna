@@ -7,7 +7,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../Firebase";
 
 const Navbar = () => {
-  const { isLoggedIn, currentUser, setIsLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, currentUser, setCurrentUser, setIsLoggedIn } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   const loginHandler = () => {
@@ -18,7 +19,10 @@ const Navbar = () => {
     await signOut(auth)
       .then(() => {
         setIsLoggedIn(false);
-        navigate("/account");
+        setCurrentUser(null);
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("user");
+        navigate("/account", { replace: true });
       })
       .catch((error) => alert("Error" + error));
   };
@@ -41,7 +45,7 @@ const Navbar = () => {
         )}
       </ul>
       {/* if the user is logged in then show their emil */}
-      {isLoggedIn && currentUser && <p> Hi, {currentUser.email}</p>}
+      {isLoggedIn && currentUser && <p>Hi, {currentUser.email}</p>}
 
       {/* if the user is logged in show the logout button else show the login button */}
       {!isLoggedIn ? (
