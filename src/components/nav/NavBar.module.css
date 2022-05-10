@@ -39,6 +39,18 @@ a {
   color: #416a40;
   border: none;
   border-radius: 163px;
+  cursor: pointer;
+}
+
+.user {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .user {
+    display: grid;
+    color: #e9e8e4;
+  }
 }
 
 @media (min-width: 768px) {

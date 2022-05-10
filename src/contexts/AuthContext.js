@@ -7,26 +7,27 @@ export const AuthContext = React.createContext();
 const AuthContextProvider = ({ children }) => {
   // state for login and current user
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
-  console.log(currentUser);
+  const [currentUser, setCurrentUser] = useState("");
 
+  /**
+   *  check if the isLoggedIn key exists in localstorage
+   * if it exists, set the isLoggedIn state to value returned from localstorage
+   * this is done when the component first mounts
+   */
   useEffect(() => {
     const status = localStorage.getItem("isLoggedIn");
-    const user = localStorage.getItem("user");
     if (status) {
       setIsLoggedIn(status);
-      setCurrentUser(user);
     }
-    console.log(status);
   }, []);
 
-  //unsubscribing to auth changes
+  //subscribing to auth changes and setting the currentUser
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
+      setCurrentUser(user?.email);
     });
 
-    //cleanup function
+    //cleanup function to unsubscribe from auth changes
     return () => unsub();
   }, []);
 

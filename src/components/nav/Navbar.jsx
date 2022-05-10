@@ -7,21 +7,24 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../Firebase";
 
 const Navbar = () => {
-  const { isLoggedIn, currentUser, setCurrentUser, setIsLoggedIn } =
-    useContext(AuthContext);
+  //destructured from context
+  const { isLoggedIn, currentUser, setIsLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const loginHandler = () => {
-    navigate("/account");
-  };
+  const loginHandler = () => navigate("/account");
 
+  /**
+   * sign out the current user
+   * update the isLoggedIn stae
+   * remove the isLoggedIn key from localstorage
+   * redirect the user to the home page and set replace to true so they cannot go back
+   * alert with error if the process failed
+   */
   const logoutHandler = async () => {
     await signOut(auth)
       .then(() => {
         setIsLoggedIn(false);
-        setCurrentUser(null);
         localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("user");
         navigate("/account", { replace: true });
       })
       .catch((error) => alert("Error" + error));
@@ -38,14 +41,19 @@ const Navbar = () => {
         <li>
           <Link to="/">Home</Link>
         </li>
+
+        {/* only show when the user is logged in */}
         {isLoggedIn && (
           <li>
             <Link to="/garden">Garden</Link>
           </li>
         )}
       </ul>
-      {/* if the user is logged in then show their emil */}
-      {isLoggedIn && currentUser && <p>Hi, {currentUser.email}</p>}
+
+      {/* if the user is logged in then show their email */}
+      {isLoggedIn && currentUser && (
+        <p className={styled.user}>Hi, {currentUser}</p>
+      )}
 
       {/* if the user is logged in show the logout button else show the login button */}
       {!isLoggedIn ? (

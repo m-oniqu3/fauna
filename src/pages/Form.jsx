@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Container from "../components/ui/Container";
 import styled from "../components/form/Form.module.css";
 import { auth, createNewUser } from "../Firebase";
@@ -7,20 +7,18 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Form = () => {
-  const { currentUser, setCurrentUser, setIsLoggedIn } =
-    useContext(AuthContext);
+  const { setIsLoggedIn } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [hasAccount, setHasAccount] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const accountHandler = () => {
-    setHasAccount(!hasAccount);
-  };
+  const accountHandler = () => setHasAccount(!hasAccount);
 
   /**
-   * create account with the user with their email and password
+   * create account with the entered email and password
+   * update loading state
    * set isLoggedIn state to true and also store it in local storage
    * navigate to the home page if the account was created successfully
    * show error if the process failed
@@ -28,13 +26,11 @@ const Form = () => {
   const createAccount = async () => {
     setLoading(true);
     try {
-      await createNewUser(email, password).then((userCredential) =>
-        setCurrentUser(userCredential.user)
-      );
-      setIsLoggedIn(true);
-      localStorage.setItem("isLoggedIn", true);
-      localStorage.setItem("user", currentUser);
-      navigate("/");
+      await createNewUser(email, password).then(() => {
+        setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", true);
+        navigate("/");
+      });
     } catch (error) {
       alert("Error" + error.message);
     }
@@ -43,24 +39,21 @@ const Form = () => {
 
   /**
    * sign in the user with their email and password
+   * update loading state
    * navigate to the home page if the user logged in successfully
    * show error if login failed
    */
   const loginHandler = async () => {
     setLoading(true);
-
     try {
-      await signInWithEmailAndPassword(auth, email, password).then(
-        (userCredential) => setCurrentUser(userCredential.user)
-      );
-      setIsLoggedIn(true);
-      localStorage.setItem("isLoggedIn", true);
-      localStorage.setItem("user", currentUser);
-      navigate("/");
+      await signInWithEmailAndPassword(auth, email, password).then(() => {
+        setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", true);
+        navigate("/");
+      });
     } catch (error) {
       alert("Error" + error);
     }
-
     setLoading(false);
   };
 
